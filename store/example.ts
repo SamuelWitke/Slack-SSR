@@ -1,20 +1,4 @@
-import { createStore, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import thunkMiddleware from 'redux-thunk'
-import { createLogger } from "redux-logger";
-
-const logger = createLogger({
-  // ...options
-});
-
-
-const middlewares = [thunkMiddleware,logger ];
-
-const exampleInitialState = {
-  lastUpdate: 0,
-  light: false,
-  count: 0
-}
+import { initState, State} from './state';
 
 export const actionTypes = {
   TICK: 'TICK',
@@ -24,7 +8,7 @@ export const actionTypes = {
 }
 
 // REDUCERS
-export const reducer = (state = exampleInitialState, action) => {
+export const exampleReducer = (state : State = initState, action) => {
   switch (action.type) {
     case actionTypes.INCREMENT:
       return Object.assign({}, state, {
@@ -36,7 +20,7 @@ export const reducer = (state = exampleInitialState, action) => {
       })
     case actionTypes.RESET:
       return Object.assign({}, state, {
-        count: exampleInitialState.count
+        count: initState.count
       })
     default: return state
   }
@@ -56,6 +40,3 @@ export const resetCount = () => dispatch => {
   return dispatch({ type: actionTypes.RESET })
 }
 
-export function initializeStore (initialState = exampleInitialState) {
-  return createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middlewares)))
-}

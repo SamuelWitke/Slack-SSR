@@ -1,5 +1,5 @@
 import * as React from "react";
-import { initializeStore } from "../store/example";
+import { initializeStore } from "../store";
 
 const isServer = typeof window === "undefined";
 const __NEXT_REDUX_STORE__ = "__NEXT_REDUX_STORE__";
