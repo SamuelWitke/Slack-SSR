@@ -1,0 +1,47 @@
+{
+  "name": "slack-ssr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@types/semantic-ui": "^2.2.6",
+    "@zeit/next-typescript": "^1.1.0",
+    "next": "^6.1.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-thunk": "^2.3.0",
+    "semantic-ui-css": "^2.3.3",
+    "semantic-ui-react": "^0.82.2",
+    "styled-jsx": "^3.0.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-styled-components": "^1.2.1",
+    "@babel/preset-typescript": "^7.0.0-rc.1",
+    "@types/next": "^6.1.2",
+    "@types/react": "^16.4.9",
+    "@zeit/next-css": "^0.2.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "file-loader": "^1.1.11",
+    "nextjs-export-path-map": "^0.1.2",
+    "redux-logger": "^3.0.6",
+    "url-loader": "^1.0.1",
+    "webpack-bundle-analyzer": "^2.13.1"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SamuelWitke",
+  "license": "ISC"
+}
