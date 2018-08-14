@@ -1,5 +1,3 @@
-import { initState, State} from './state';
-
 export const actionTypes = {
   TICK: 'TICK',
   INCREMENT: 'INCREMENT',
@@ -7,8 +5,15 @@ export const actionTypes = {
   RESET: 'RESET'
 }
 
+class State{
+  public count : number
+  constructor() {
+    this.count = 0;
+  }
+}
+
 // REDUCERS
-export const exampleReducer = (state : State = initState, action) => {
+export const exampleReducer = (state = new State(), action) => {
   switch (action.type) {
     case actionTypes.INCREMENT:
       return Object.assign({}, state, {
@@ -20,14 +25,13 @@ export const exampleReducer = (state : State = initState, action) => {
       })
     case actionTypes.RESET:
       return Object.assign({}, state, {
-        count: initState.count
+        count: new State().count
       })
     default: return state
   }
 }
 
 // ACTIONS
-
 export const incrementCount = () => dispatch => {
   return dispatch({ type: actionTypes.INCREMENT })
 }
