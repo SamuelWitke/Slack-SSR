@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect, Dispatch } from "react-redux";
-import { userSignUp } from "../../store/user";
+import { userSignOn } from "../../store/user";
 import { Field, reduxForm, formValueSelector } from "redux-form";
 //import { WrappedFieldProps} from 'redux-form';
 import {
@@ -12,35 +12,11 @@ import {
 } from "semantic-ui-react";
 import { signUpValidateAync, sigunUpValidate } from "../../utils/submit";
 
-export interface ContactFormData {
+export interface LoginFormData {
   firstName?: string;
   lastName?: string;
   email?: string;
 }
-/*
-type InputProps = {
-  checked?: boolean,
-  name: string,
-  onBlur: { (eventOrValue: Event | any): void },
-  onChange: { (eventOrValue: Event | any): void },
-  onDrop: { (event: Event): void },
-  onDragStart: { (event: Event): void },
-  onFocus: { (event: Event): void },
-  value: any
-};
-type FieldProps = {
-  input: InputProps,
-  meta: {
-    error?: any,
-    touched: boolean
-  },
-  required?: boolean,
-  width?: string,
-  label?: string,
-  inline?: boolean,
-  defaultChecked?: boolean
-};
-*/
 
 const renderInput = ({
   input,
@@ -65,12 +41,9 @@ const renderInput = ({
 class ContactForm extends React.Component<any & any, any> {
   handleSubmit = () => {
     setTimeout(() => {
-      const { username, lastName, firstName, email } = this.props;
+      const { username } = this.props;
       const user: any = {
-        lastName,
-        firstName,
-        username,
-        email
+        username
       };
       this.props.loadUser(user);
     }, Math.random() * 1000);
@@ -106,26 +79,6 @@ class ContactForm extends React.Component<any & any, any> {
           placeholder="User Name"
           type="text"
         />
-        <Form.Group widths="equal">
-          <Field
-            name="firstName"
-            component={renderInput}
-            placeholder="First Name"
-            type="text"
-          />
-          <Field
-            name="lastName"
-            component={renderInput}
-            placeholder="Last Name"
-            type="text"
-          />
-        </Form.Group>
-        <Field
-          name="email"
-          component={renderInput}
-          placeholder="Email"
-          type="email"
-        />
         <Button type="submit" disabled={submitting}>
           Submit
         </Button>
@@ -137,27 +90,18 @@ class ContactForm extends React.Component<any & any, any> {
   }
 }
 
-const selector = formValueSelector("signup");
+const selector = formValueSelector("Login");
 
 function mapStateToProps(state: any) {
-  const { firstName, lastName, username, email } = selector(
-    state,
-    "firstName",
-    "lastName",
-    "email",
-    "username"
-  );
+  const username = selector(state, "username") || "";
   return {
-    email,
-    firstName,
-    lastName,
     username
   };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<any>) {
   return {
-    loadUser: (user: any) => dispatch(userSignUp(user))
+    loadUser: (user: any) => dispatch(userSignOn(user))
   };
 }
 
@@ -167,7 +111,8 @@ const FormRedux: any = connect<any, any, any>(
 )(ContactForm);
 
 export default reduxForm({
-  form: "signup", // a unique identifier for this form,
+  form: "Login", // a unique identifier for this form,
+  fields: ["username"],
   validate: sigunUpValidate, // Not Async Validation,
   asyncValidate: signUpValidateAync as any
 })(FormRedux as any);

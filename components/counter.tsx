@@ -26,7 +26,6 @@ class Counter extends React.Component<Props> {
 
   render() {
     const { count } = this.props;
-    console.log(this.props);
     return (
       <div>
         <h1>
@@ -43,7 +42,6 @@ class Counter extends React.Component<Props> {
 function mapStateToProps(state) {
   const { example } = state;
   const { count } = example;
-  console.log(state);
   return { count };
 }
 
